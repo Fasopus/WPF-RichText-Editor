@@ -473,8 +473,66 @@ namespace WpfRichText
 
 		private void ContextMenu_ContextMenuOpening(object sender, ContextMenuEventArgs e)
 		{
-			if (!this.IsContextMenuEnabled == true)
-				e.Handled = true;
+            if (!this.IsContextMenuEnabled == true)
+            {
+                e.Handled = true;
+            }
+
+            foreach (MenuItem menuItem in this.mainRTB.ContextMenu.Items)
+            {
+                if (menuItem.Command == ApplicationCommands.Cut)
+                {
+                    menuItem.Visibility = CutVisibility;
+                }
+                else if (menuItem.Command == ApplicationCommands.Copy)
+                {
+                    menuItem.Visibility = CopyVisibility;
+                }
+                else if (menuItem.Command == ApplicationCommands.Paste)
+                {
+                    menuItem.Visibility = PasteVisibility;
+                }
+                else if (menuItem.Command == ApplicationCommands.Undo)
+                {
+                    menuItem.Visibility = UndoVisibility;
+                }
+                else if (menuItem.Command == ApplicationCommands.Redo)
+                {
+                    menuItem.Visibility = RedoVisibility;
+                }
+                else if (menuItem.Command == EditingCommands.IncreaseFontSize || menuItem.Command == EditingCommands.DecreaseFontSize)
+                {
+                    menuItem.Visibility = FontSizeSelectionVisibility;
+                }
+                else if (menuItem.Command == EditingCommands.ToggleBold)
+                {
+                    menuItem.Visibility = BoldFontVisibility;
+                }
+                else if (menuItem.Command == EditingCommands.ToggleItalic)
+                {
+                    menuItem.Visibility = ItalicFontVisibility;
+                }
+                else if (menuItem.Command == EditingCommands.ToggleUnderline)
+                {
+                    menuItem.Visibility = UnderlinedFontVisibility;
+                }
+                else if (menuItem.Command == EditingCommands.AlignCenter || menuItem.Command == EditingCommands.AlignJustify || menuItem.Command == EditingCommands.AlignLeft || menuItem.Command == EditingCommands.AlignRight)
+                {
+                    menuItem.Visibility = JustificationVisibility;
+                }
+                else if (menuItem.Command == EditingCommands.ToggleBullets || menuItem.Command == EditingCommands.ToggleNumbering)
+                {
+                    menuItem.Visibility = BulletFormattingVisibility;
+                }
+                else if (menuItem.Command == EditingCommands.IncreaseIndentation || menuItem.Command == EditingCommands.DecreaseIndentation)
+                {
+                    menuItem.Visibility = IndentationVisibility;
+                }
+                else
+                {
+                    menuItem.Visibility = Visibility.Collapsed;
+                }
+            }
 		}
 
         private void mainToolBar_SizeChanged(object sender, SizeChangedEventArgs e)
@@ -493,5 +551,71 @@ namespace WpfRichText
                 mainPanelBorder.Margin = toolBar.HasOverflowItems ? defaultMargin : new Thickness(0);
             }
         }
+
+        private void CommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (e.Command == ApplicationCommands.Cut)
+            {
+                HandleCommandBindingCanExecute(CutVisibility, e);
+            }
+            else if (e.Command == ApplicationCommands.Copy)
+            {
+                HandleCommandBindingCanExecute(CopyVisibility, e);
+            }
+            else if (e.Command == ApplicationCommands.Paste)
+            {
+                HandleCommandBindingCanExecute(PasteVisibility, e);
+            }
+            else if (e.Command == ApplicationCommands.Undo)
+            {
+                HandleCommandBindingCanExecute(UndoVisibility, e);
+            }
+            else if (e.Command == ApplicationCommands.Redo)
+            {
+                HandleCommandBindingCanExecute(RedoVisibility, e);
+            }
+            else if (e.Command == EditingCommands.IncreaseFontSize || e.Command == EditingCommands.DecreaseFontSize)
+            {
+                HandleCommandBindingCanExecute(FontSizeSelectionVisibility, e);
+            }
+            else if (e.Command == EditingCommands.ToggleBold)
+            {
+                HandleCommandBindingCanExecute(BoldFontVisibility, e);
+            }
+            else if (e.Command == EditingCommands.ToggleItalic)
+            {
+                HandleCommandBindingCanExecute(ItalicFontVisibility, e);
+            }
+            else if (e.Command == EditingCommands.ToggleUnderline)
+            {
+                HandleCommandBindingCanExecute(UnderlinedFontVisibility, e);
+            }
+            else if (e.Command == EditingCommands.AlignCenter || e.Command == EditingCommands.AlignJustify || e.Command == EditingCommands.AlignLeft || e.Command == EditingCommands.AlignRight)
+            {
+                HandleCommandBindingCanExecute(JustificationVisibility, e);
+            }
+            else if (e.Command == EditingCommands.ToggleBullets || e.Command == EditingCommands.ToggleNumbering)
+            {
+                HandleCommandBindingCanExecute(BulletFormattingVisibility, e);
+            }
+            else if (e.Command == EditingCommands.IncreaseIndentation || e.Command == EditingCommands.DecreaseIndentation)
+            {
+                HandleCommandBindingCanExecute(IndentationVisibility, e);
+            }
+            else
+            {
+                HandleCommandBindingCanExecute(Visibility.Collapsed, e);
+            }
+        }
+
+        private void HandleCommandBindingCanExecute(Visibility commandVisibility, CanExecuteRoutedEventArgs e)
+        {
+            if (commandVisibility != Visibility.Visible)
+            {
+                e.CanExecute = false;
+                e.Handled = true;
+            }
+        }
+
     }
 }

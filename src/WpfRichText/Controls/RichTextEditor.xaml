@@ -592,7 +592,7 @@
 			</Button>
 		</ToolBar>
 		<ScrollViewer Grid.Row="1" Margin="0,1,0,0">
-			<RichTextBox x:Name="mainRTB" 
+            <RichTextBox x:Name="mainRTB" 
 							AcceptsTab="True" 
 							asis:RichTextBoxAssistant.BoundDocument="{Binding Text, ElementName=uxRichTextEditor}" 
 							MinHeight="100" 
@@ -602,8 +602,28 @@
 							Background="{Binding Background, ElementName=uxRichTextEditor}"
 							Foreground="{Binding Foreground, ElementName=uxRichTextEditor}"
 							BorderBrush="{Binding BorderBrush, ElementName=uxRichTextEditor}" 
-							BorderThickness="{Binding BorderThickness, ElementName=uxRichTextEditor}" 
-							/>
-		</ScrollViewer>
+							BorderThickness="{Binding BorderThickness, ElementName=uxRichTextEditor}">
+                <RichTextBox.CommandBindings>
+                    <CommandBinding Command="ApplicationCommands.Cut" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="ApplicationCommands.Copy" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="ApplicationCommands.Paste" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="ApplicationCommands.Undo" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="ApplicationCommands.Redo" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.IncreaseFontSize" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.DecreaseFontSize" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.ToggleBold" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.ToggleItalic" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.ToggleUnderline" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.AlignCenter" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.AlignJustify" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.AlignLeft" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.AlignRight" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.ToggleBullets" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.ToggleNumbering" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.IncreaseIndentation" CanExecute="CommandBinding_CanExecute"/>
+                    <CommandBinding Command="EditingCommands.DecreaseIndentation" CanExecute="CommandBinding_CanExecute"/>
+                </RichTextBox.CommandBindings>
+            </RichTextBox>
+        </ScrollViewer>
 	</Grid>
 </UserControl>
