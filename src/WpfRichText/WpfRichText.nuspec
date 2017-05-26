@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package>
+  
+  <metadata>
+    <id>Camis.WpfRichText</id>
+    <version>$version$</version>
+    <title>Wpf Rich Text Editor</title>
+    <authors>Camis Inc</authors>
+    <owners>Camis Inc</owners>
+    <description>Wpf rich text editor that can export its content in HTML format.</description>
+
+    <dependencies>
+      <dependency id="Extended.Wpf.Toolkit" version="2.9" />
+    </dependencies>
+    
+  </metadata>
+
+  <files>
+    <file src="bin\$configuration$\WpfRichText.dll" target="lib\net45" />
+    <file src="bin\$configuration$\WpfRichText.pdb" target="lib\net45" />
+  </files>
+  
+</package>
