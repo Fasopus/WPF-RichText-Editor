@@ -493,24 +493,25 @@
 				Foreground="{Binding Foreground, ElementName=uxRichTextEditor}" 
 				BorderBrush="{Binding BorderBrush, ElementName=uxRichTextEditor}" 
 				BorderThickness="{Binding BorderThickness, ElementName=uxRichTextEditor}" 
-				 Template="{DynamicResource ToolBarControlTemplate1}">
-			<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Cut" ToolTip="Cut">
+				Template="{DynamicResource ToolBarControlTemplate1}"
+                SizeChanged="mainToolBar_SizeChanged">
+			<Button Style="{StaticResource formatImageStyle}" Visibility="{Binding CutVisibility, ElementName=uxRichTextEditor}" Command="ApplicationCommands.Cut" ToolTip="Cut">
 				<Image Source="Images/cut.png"/>
 			</Button>
-			<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Copy" ToolTip="Copy">
+            <Button Style="{StaticResource formatImageStyle}" Visibility="{Binding CopyVisibility, ElementName=uxRichTextEditor}" Command="ApplicationCommands.Copy" ToolTip="Copy">
 				<Image Source="Images/page_copy.png"/>
 			</Button>
-			<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Paste" ToolTip="Paste">
+            <Button Style="{StaticResource formatImageStyle}" Visibility="{Binding PasteVisibility, ElementName=uxRichTextEditor}" Command="ApplicationCommands.Paste" ToolTip="Paste">
 				<Image Source="Images/page_paste.png"/>
 			</Button>
-			<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Undo" ToolTip="Undo">
+            <Button Style="{StaticResource formatImageStyle}" Visibility="{Binding UndoVisibility, ElementName=uxRichTextEditor}" Command="ApplicationCommands.Undo" ToolTip="Undo">
 				<Image Source="Images/editundo.png"/>
 			</Button>
-			<Button Style="{StaticResource formatImageStyle}" Command="ApplicationCommands.Redo" ToolTip="Redo">
+            <Button Style="{StaticResource formatImageStyle}" Visibility="{Binding RedoVisibility, ElementName=uxRichTextEditor}" Command="ApplicationCommands.Redo" ToolTip="Redo">
 				<Image Source="Images/editredo.png"/>
 			</Button>
-			<Separator/>
-			<Border Margin="2,0" Padding="0">
+            <Separator Visibility="{Binding SeparatorVisibility, ElementName=uxRichTextEditor}"/>
+            <Border Margin="2,0" Padding="0" Visibility="{Binding FontSelectionVisibility, ElementName=uxRichTextEditor}">
 				<ComboBox ToolTip="Select Font" 
 						ItemsSource="{Binding AvailableFonts, ElementName=uxRichTextEditor}" 
 						Width="100" 
@@ -519,24 +520,24 @@
 						SelectedIndex="0" 
 						SelectionChanged="ComboBox_SelectionChanged"/>
 			</Border>
-			<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.IncreaseFontSize" ToolTip="Grow Font">
+            <Button Style="{StaticResource formatImageStyle}" Visibility="{Binding FontSizeSelectionVisibility, ElementName=uxRichTextEditor}" Command="EditingCommands.IncreaseFontSize" ToolTip="Grow Font">
 				<Image Source="Images/charactergrowfont.png"/>
 			</Button>
-			<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.DecreaseFontSize" ToolTip="Shrink Font">
+            <Button Style="{StaticResource formatImageStyle}" Visibility="{Binding FontSizeSelectionVisibility, ElementName=uxRichTextEditor}" Command="EditingCommands.DecreaseFontSize" ToolTip="Shrink Font">
 				<Image Source="Images/charactershrinkfont.png"/>
 			</Button>
-			<Separator/>
-			<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleBold" ToolTip="Bold">
+            <Separator Visibility="{Binding SeparatorVisibility, ElementName=uxRichTextEditor}"/>
+            <Button Style="{StaticResource formatImageStyle}" Visibility="{Binding BoldFontVisibility, ElementName=uxRichTextEditor}" Command="EditingCommands.ToggleBold" ToolTip="Bold">
 				<Image Source="Images/text_bold.png"/>
 			</Button>
-			<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleItalic" ToolTip="Italic">
+            <Button Style="{StaticResource formatImageStyle}" Visibility="{Binding ItalicFontVisibility, ElementName=uxRichTextEditor}" Command="EditingCommands.ToggleItalic" ToolTip="Italic">
 				<Image Source="Images/text_italic.png"/>
 			</Button>
-			<Button Style="{StaticResource formatImageStyle}" Command="EditingCommands.ToggleUnderline" ToolTip="Underline">
+            <Button Style="{StaticResource formatImageStyle}" Visibility="{Binding UnderlinedFontVisibility, ElementName=uxRichTextEditor}" Command="EditingCommands.ToggleUnderline" ToolTip="Underline">
 				<Image Source="Images/text_underline.png"/>
 			</Button>
-			<xt:ColorPicker ShowDropDownButton="true" ToolTip="Select font color" ShowAvailableColors="False" SelectedColorChanged="FontColorPicker_SelectedColorChanged" Width="40" />
-			<ComboBox Style="{DynamicResource formatComboBoxStyle}">
+            <xt:ColorPicker Visibility="{Binding FontColorVisibility, ElementName=uxRichTextEditor}" ShowDropDownButton="true" ToolTip="Select font color" ShowAvailableColors="False" SelectedColorChanged="FontColorPicker_SelectedColorChanged" Width="40" />
+            <ComboBox Style="{DynamicResource formatComboBoxStyle}" Visibility="{Binding JustificationVisibility, ElementName=uxRichTextEditor}">
 				<ComboBoxItem IsSelected="True">
 					<Button Style="{StaticResource buttonComboBoxStyle}" Command="EditingCommands.AlignLeft" ToolTip="Align Left">
 						<Image Source="Images/text_align_left.png"/>
@@ -558,22 +559,22 @@
 					</Button>
 				</ComboBoxItem>
 			</ComboBox>
-			<Separator/>
-			<Button Style="{StaticResource buttonComboBoxStyle}" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
+            <Separator Visibility="{Binding SeparatorVisibility, ElementName=uxRichTextEditor}"/>
+            <Button Style="{StaticResource buttonComboBoxStyle}" Visibility="{Binding BulletFormattingVisibility, ElementName=uxRichTextEditor}" Command="EditingCommands.ToggleBullets" ToolTip="Bullets">
 				<Image Source="Images/text_list_bullets.png"/>
 			</Button>
-			<Button Style="{StaticResource buttonComboBoxStyle}" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering">
+            <Button Style="{StaticResource buttonComboBoxStyle}" Visibility="{Binding BulletFormattingVisibility, ElementName=uxRichTextEditor}" Command="EditingCommands.ToggleNumbering" ToolTip="Numbering">
 				<Image Source="Images/text_list_numbers.png"/>
 			</Button>
-			<Separator/>
-			<Button Style="{StaticResource buttonComboBoxStyle}" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indent">
+            <Separator Visibility="{Binding SeparatorVisibility, ElementName=uxRichTextEditor}"/>
+            <Button Style="{StaticResource buttonComboBoxStyle}" Visibility="{Binding IndentationVisibility, ElementName=uxRichTextEditor}" Command="EditingCommands.IncreaseIndentation" ToolTip="Increase Indent">
 				<Image Source="Images/text_indent.png"/>
 			</Button>
-			<Button Style="{StaticResource buttonComboBoxStyle}" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indent">
+            <Button Style="{StaticResource buttonComboBoxStyle}" Visibility="{Binding IndentationVisibility, ElementName=uxRichTextEditor}" Command="EditingCommands.DecreaseIndentation" ToolTip="Decrease Indent">
 				<Image Source="Images/text_indent_remove.png"/>
 			</Button>
-			<Separator/>
-			<Button x:Name="insertLink" Style="{StaticResource buttonComboBoxStyle}" ToolTip="Insert link" Click="insertLink_Click">
+            <Separator Visibility="{Binding SeparatorVisibility, ElementName=uxRichTextEditor}"/>
+            <Button x:Name="insertLink" Visibility="{Binding InsertLinkVisibility, ElementName=uxRichTextEditor}" Style="{StaticResource buttonComboBoxStyle}" ToolTip="Insert link" Click="insertLink_Click">
 				<Grid>
 					<Image Source="Images/world_link.png"/>
 					<Popup x:Name="uriInputPopup" StaysOpen="False" PlacementTarget="{Binding ElementName=insertLink, Mode=OneWay}">

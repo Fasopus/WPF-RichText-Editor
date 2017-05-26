@@ -36,8 +36,88 @@ namespace WpfRichText
 		  DependencyProperty.Register("IsContextMenuEnabled", typeof(bool), typeof(RichTextEditor),
 		  new PropertyMetadata(true));
 
-		/// <summary></summary>
-		public static readonly DependencyProperty IsReadOnlyProperty =
+        /// <summary></summary>
+        public static readonly DependencyProperty CutVisibilityProperty =
+          DependencyProperty.Register("CutVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty CopyVisibilityProperty =
+          DependencyProperty.Register("CopyVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty PasteVisibilityProperty =
+          DependencyProperty.Register("PasteVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty UndoVisibilityProperty =
+          DependencyProperty.Register("UndoVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty RedoVisibilityProperty =
+          DependencyProperty.Register("RedoVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty FontSelectionVisibilityProperty =
+          DependencyProperty.Register("FontSelectionVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty FontSizeSelectionVisibilityProperty =
+          DependencyProperty.Register("FontSizeSelectionVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty BoldFontVisibilityProperty =
+          DependencyProperty.Register("BoldFontVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty ItalicFontVisibilityProperty =
+          DependencyProperty.Register("ItalicFontVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty UnderlinedFontVisibilityProperty =
+          DependencyProperty.Register("UnderlinedFontVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty FontColorVisibilityProperty =
+          DependencyProperty.Register("FontColorVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty JustificationVisibilityProperty =
+          DependencyProperty.Register("JustificationVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty BulletFormattingVisibilityProperty =
+          DependencyProperty.Register("BulletFormattingVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty IndentationVisibilityProperty =
+          DependencyProperty.Register("IndentationVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty InsertLinkVisibilityProperty =
+          DependencyProperty.Register("InsertLinkVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty SeparatorVisibilityProperty =
+          DependencyProperty.Register("SeparatorVisibility", typeof(Visibility), typeof(RichTextEditor),
+          new PropertyMetadata(Visibility.Visible));
+
+        /// <summary></summary>
+        public static readonly DependencyProperty IsReadOnlyProperty =
 		  DependencyProperty.Register("IsReadOnly", typeof(bool), typeof(RichTextEditor),
 		  new PropertyMetadata(false));
 
@@ -66,7 +146,10 @@ namespace WpfRichText
 		/// <summary></summary>
 		public string Text
 		{
-			get { return GetValue(TextProperty) as string; }
+			get
+            {
+                return GetValue(TextProperty) as string;
+            }
 			set
 			{
 				SetValue(TextProperty, value);
@@ -76,7 +159,10 @@ namespace WpfRichText
 		/// <summary></summary>
 		public bool IsToolBarVisible
 		{
-			get { return (GetValue(IsToolBarVisibleProperty) as bool? == true); }
+			get
+            {
+                return (GetValue(IsToolBarVisibleProperty) as bool? == true);
+            }
 			set
 			{
 				SetValue(IsToolBarVisibleProperty, value);
@@ -100,7 +186,10 @@ namespace WpfRichText
 		/// <summary></summary>
 		public bool IsReadOnly
 		{
-			get { return (GetValue(IsReadOnlyProperty) as bool? == true); }
+			get
+            {
+                return (GetValue(IsReadOnlyProperty) as bool? == true);
+            }
 			set
 			{
 				SetValue(IsReadOnlyProperty, value);
@@ -109,8 +198,216 @@ namespace WpfRichText
 			}
 		}
 
-		/// <summary></summary>
-		public Collection<String> AvailableFonts
+        /// <summary></summary>
+        public Visibility CutVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(CutVisibilityProperty);
+            }
+            set
+            {
+                SetValue(CutVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility CopyVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(CopyVisibilityProperty);
+            }
+            set
+            {
+                SetValue(CopyVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility PasteVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(PasteVisibilityProperty);
+            }
+            set
+            {
+                SetValue(PasteVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility UndoVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(UndoVisibilityProperty);
+            }
+            set
+            {
+                SetValue(UndoVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility RedoVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(RedoVisibilityProperty);
+            }
+            set
+            {
+                SetValue(RedoVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility FontSelectionVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(FontSelectionVisibilityProperty);
+            }
+            set
+            {
+                SetValue(FontSelectionVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility FontSizeSelectionVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(FontSizeSelectionVisibilityProperty);
+            }
+            set
+            {
+                SetValue(FontSizeSelectionVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility BoldFontVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(BoldFontVisibilityProperty);
+            }
+            set
+            {
+                SetValue(BoldFontVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility ItalicFontVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(ItalicFontVisibilityProperty);
+            }
+            set
+            {
+                SetValue(ItalicFontVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility UnderlinedFontVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(UnderlinedFontVisibilityProperty);
+            }
+            set
+            {
+                SetValue(UnderlinedFontVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility FontColorVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(FontColorVisibilityProperty);
+            }
+            set
+            {
+                SetValue(FontColorVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility JustificationVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(JustificationVisibilityProperty);
+            }
+            set
+            {
+                SetValue(JustificationVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility BulletFormattingVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(BulletFormattingVisibilityProperty);
+            }
+            set
+            {
+                SetValue(BulletFormattingVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility IndentationVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(IndentationVisibilityProperty);
+            }
+            set
+            {
+                SetValue(IndentationVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility InsertLinkVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(InsertLinkVisibilityProperty);
+            }
+            set
+            {
+                SetValue(InsertLinkVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Visibility SeparatorVisibility
+        {
+            get
+            {
+                return (Visibility)GetValue(SeparatorVisibilityProperty);
+            }
+            set
+            {
+                SetValue(SeparatorVisibilityProperty, value);
+            }
+        }
+
+        /// <summary></summary>
+        public Collection<String> AvailableFonts
 		{
 			get { return GetValue(AvailableFontsProperty) as Collection<String>; }
 			set
@@ -180,5 +477,21 @@ namespace WpfRichText
 				e.Handled = true;
 		}
 
-	}
+        private void mainToolBar_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            ToolBar toolBar = sender as ToolBar;
+            var overflowGrid = toolBar.Template.FindName("OverflowGrid", toolBar) as FrameworkElement;
+            if (overflowGrid != null)
+            {
+                overflowGrid.Visibility = toolBar.HasOverflowItems ? Visibility.Visible : Visibility.Collapsed;
+            }
+
+            var mainPanelBorder = toolBar.Template.FindName("MainPanelBorder", toolBar) as FrameworkElement;
+            if (mainPanelBorder != null)
+            {
+                var defaultMargin = new Thickness(0, 0, 11, 0);
+                mainPanelBorder.Margin = toolBar.HasOverflowItems ? defaultMargin : new Thickness(0);
+            }
+        }
+    }
 }
